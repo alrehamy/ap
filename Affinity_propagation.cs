@@ -12,7 +12,7 @@ public class Affinity_propagation
     public const int num = 10;
     //定义点集 define matrix
     public PointF[] points = new PointF[num];
-    //判定是否为中心点
+    //判定是否为中心点 define center point
     public int[] iscenter = new int[num];
     //定义相似度矩阵
     public double[,] similarmatrix = new double[num, num];
