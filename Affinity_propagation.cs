@@ -10,7 +10,7 @@ using System.Windows.Forms;
 public class Affinity_propagation
 {
     public const int num = 10;
-    //定义点集
+    //定义点集 define matrix
     public PointF[] points = new PointF[num];
     //判定是否为中心点
     public int[] iscenter = new int[num];
