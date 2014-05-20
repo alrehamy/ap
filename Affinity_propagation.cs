@@ -33,5 +33,27 @@ public class Affinity_propagation
 
         ///第一步，创建相似度矩阵
         CreateSimilarMatrix(); 
+
 	}
+
+    /// <summary>
+    /// 创建相似度矩阵.这里有点疑惑，是不是先按照常规计算再去算Pk？？
+    /// 而且这个中值是不是要排除0？先不管它，当不排除
+    /// </summary>
+    private void CreateSimilarMatrix()
+    {
+        for (int i = 0; i < num; i++)
+        {
+            for (int j = 0; j < num; j++)
+            {
+                similarmatrix[i, j] = CalDistant(points[i], points[j]);
+            }
+        }
+        double median = ReturnMedian(similarmatrix);
+        pk = median / 2;                                         //取中值作为preference的值
+        for (int i = 0; i < num; i++)
+        {
+            similarmatrix[i, i] = pk;
+        }
+    }
 }
