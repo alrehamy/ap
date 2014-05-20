@@ -37,7 +37,7 @@ public class Affinity_propagation
 	}
  
  
- /// <summary>
+    /// <summary>
     /// 创建相似度矩阵.这里有点疑惑，是不是先按照常规计算再去算Pk？？
     /// 而且这个中值是不是要排除0？先不管它，当不排除
     /// </summary>
