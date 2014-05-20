@@ -27,6 +27,11 @@ public class Affinity_propagation
     public const double dampcv = 0.5;
     public Affinity_propagation()
 	{
-          
+        InitializeComponent();
+        InitPoints();
+        InitMsga();
+
+        ///第一步，创建相似度矩阵
+        CreateSimilarMatrix(); 
 	}
 }
