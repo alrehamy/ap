@@ -57,5 +57,35 @@ public class Affinity_propagation
             similarmatrix[i, i] = pk;
         }
     }
+    
+    /// <summary>
+        /// 初始化点集
+        /// </summary>
+        private void InitPoints()
+        {
+            points[0].X = (float)0.1;
+            points[0].Y = (float)0.1;
+            points[1].X = (float)0.3;
+            points[1].Y = (float)0.1;
+            points[2].X = (float)0.3;
+            points[2].Y = (float)0.3;
+            points[3].X = (float)0.1;
+            points[3].Y = (float)0.3;
+            points[4].X = (float)0.2;
+            points[4].Y = (float)0.2;
+            points[5].X = (float)0.5;
+            points[5].Y = (float)0.5;
+            points[6].X = (float)0.7;
+            points[6].Y = (float)0.5;
+            points[7].X = (float)0.7;
+            points[7].Y = (float)0.7;
+            points[8].X = (float)0.5;
+            points[8].Y = (float)0.7;
+            points[9].X = (float)0.6;
+            points[9].Y = (float)0.6;
+
+            for (int k = 0; k < num; k++)
+                iscenter[k] = 0;
+        }
    
 }
