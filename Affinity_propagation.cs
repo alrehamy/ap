@@ -87,5 +87,20 @@ public class Affinity_propagation
             for (int k = 0; k < num; k++)
                 iscenter[k] = 0;
         }
-   
+   /// <summary>
+        /// 初始化消息
+        /// </summary>
+        private void InitMsga()
+        {
+            for (int i = 0; i < num; i++)
+            {
+                for (int j = 0; j < num; j++)
+                {
+                    msga[i, j] = 0;
+                    msgr[i, j] = 0;
+                    oldmsga[i, j] = 0;
+                    oldmsgr[i, j] = 0;
+                }
+            }
+        }
 }
