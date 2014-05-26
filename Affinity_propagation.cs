@@ -103,4 +103,15 @@ public class Affinity_propagation
                 }
             }
         }
+        
+         /// <summary>
+        /// 计算欧式距离的相反数
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
+        private double CalDistant(PointF p1, PointF p2)
+        {
+            return -(p1.X - p2.X) * (p1.X - p2.X) - (p1.Y - p2.Y) * (p1.Y - p2.Y);
+        }
 }
