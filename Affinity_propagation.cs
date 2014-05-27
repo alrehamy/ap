@@ -114,4 +114,23 @@ public class Affinity_propagation
         {
             return -(p1.X - p2.X) * (p1.X - p2.X) - (p1.Y - p2.Y) * (p1.Y - p2.Y);
         }
+         /// <summary>
+        /// 创建相似度矩阵
+        /// </summary>
+        private void CreateSimilarMatrix()
+        {
+            for (int i = 0; i < num; i++)
+            {
+                for (int j = 0; j < num; j++)
+                {
+                    similarmatrix[i, j] = CalDistant(points[i], points[j]);
+                }
+            }
+            double median = ReturnMedian(similarmatrix);
+            pk = median / 2;                                         //取中值作为preference的值
+            for (int i = 0; i < num; i++)
+            {
+                similarmatrix[i, i] = pk;
+            }
+        }
 }
