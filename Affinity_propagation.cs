@@ -133,4 +133,94 @@ public class Affinity_propagation
                 similarmatrix[i, i] = pk;
             }
         }
+         /// <summary>
+        /// 更新消息
+        /// </summary>
+        private void UpdateMsg()
+        {
+            //更新msgr.R(i,k)=S(i,k)- max{A(i,j)+S(i,j)}(j {1,2,……,N,但j≠k})
+            for (int i = 0; i < num; i++)
+            {
+                for (int k = 0; k < num; k++)
+                {
+                    //首先得到max{A(i,j)+S(i,j)}(j!=k)
+                    double max_tmp;
+                    //赋初值
+                    if (k == 0)
+                    {
+                        max_tmp = msga[i, 1] + similarmatrix[i, 1];
+                    }
+                    else
+                    {
+                        max_tmp = msga[i, 0] + similarmatrix[i, 0];
+                    }
+                    for (int j = 0; j < num; j++)
+                    {
+                        if (j != k)
+                        {
+                            if (max_tmp < (msga[i, j] + similarmatrix[i, j]))
+                            {
+                                max_tmp = msga[i, j] + similarmatrix[i, j];
+                            }
+                        }
+                    } //end get the max
+
+                    msgr[i, k] = similarmatrix[i, k] - max_tmp;
+                }
+            }
+            //更新msgr[k,k].R(k,k)=P(k)-max{A(k,j)+S(k,j)} (j {1,2,……,N,但j≠k})
+            for (int i = 0; i < num; i++)
+            {
+                double max_tmp;
+                //赋初值
+                if (i == 0)
+                {
+                    max_tmp = msga[i, 1] + similarmatrix[i, 1];
+                }
+                else
+                {
+                    max_tmp = msga[i, 0] + similarmatrix[i, 0];
+                }
+                for (int j = 0; j < num; j++)
+                {
+                    if (j != i)
+                    {
+                        if ((msga[i, j] + similarmatrix[i, j]) > max_tmp)
+                        {
+                            max_tmp = msga[i, j] + similarmatrix[i, j];
+                        }
+                    }
+                }
+                msgr[i, i] = pk - max_tmp;
+            }
+            //为容易看先分开写
+            //更新msga.A(i,k)=min{0,R(k,k)+  (j {1,2,……,N,但j≠i且j≠k})
+            for (int i = 0; i < num; i++)
+            {
+                for (int k = 0; k < num; k++)
+                {
+                    //求得max部分
+                    double sum_tmp = 0;
+                    for (int j = 0; j < num; j++)
+                    {
+                        if (j != i)
+                        {
+                            if (msgr[j, k] > 0)
+                            {
+                                sum_tmp += msgr[j, k];
+                            }
+                        }
+                    } //end 求max部分
+                    double addtmp = msgr[k, k] + sum_tmp;
+                    if (addtmp < 0)
+                    {
+                        msga[i, k] = addtmp;
+                    }
+                    else
+                    {
+                        msga[i, k] = 0;
+                    }
+                }
+            }//end 更新msga
+        } //end updatemsg
 }
