@@ -223,4 +223,18 @@ public class Affinity_propagation
                 }
             }//end 更新msga
         } //end updatemsg
+         /// <summary>
+        /// 保存到旧消息数组
+        /// </summary>
+        private void GetOldMsg()
+        {
+            for (int i = 0; i < num; i++)
+            {
+                for (int k = 0; k < num; k++)
+                {
+                    oldmsga[i, k] = msga[i, k];
+                    oldmsgr[i, k] = msgr[i, k];
+                }
+            }
+        }
 }
