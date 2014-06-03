@@ -237,4 +237,18 @@ public class Affinity_propagation
                 }
             }
         }
+        /// <summary>
+        /// 加入阻尼系数
+        /// </summary>
+        private void DampMsg()
+        {
+            for (int i = 0; i < num; i++)
+            {
+                for (int k = 0; k < num; k++)
+                {
+                    msga[i, k] = (1 - dampcv) * msga[i, k] + dampcv * oldmsga[i, k]; ;
+                    msgr[i, k] = (1 - dampcv) * msgr[i, k] + dampcv * oldmsgr[i, k];
+                }
+            }
+        }
 }
