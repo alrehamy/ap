@@ -251,4 +251,18 @@ public class Affinity_propagation
                 }
             }
         }
+        /// <summary>
+        /// 判断是否为中心点。
+        /// </summary>
+        private void JudgeCenter()
+        {
+            for (int k = 0; k < num; k++)
+            {
+                if (msga[k, k] + msgr[k, k] >= 0)  //判定条件。。
+                    iscenter[k] = 1;
+                //    textBox1.Text += k.ToString() + "\r\n";
+                
+                
+            }
+        }
 }
