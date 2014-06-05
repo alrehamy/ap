@@ -265,4 +265,31 @@ public class Affinity_propagation
                 
             }
         }
+        /// <summary>
+        /// 返回二维数组的中值
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
+        private double ReturnMedian(double[,] matrix)
+        {
+            double median = 0;
+            double[] list = new double[matrix.GetLength(0) * matrix.GetLength(1)];
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    list[matrix.GetLength(0) * i + j] = matrix[i, j];
+                }
+            }
+            Array.Sort(list);
+            if (list.Length % 2 == 0)
+            {
+                median = (list[list.Length / 2] + list[list.Length / 2 - 1]) * 0.5;
+            }
+            else
+            {
+                median = list[Convert.ToInt32((list.Length - 1) * 0.5)];
+            }
+            return median;
+        }
 }
