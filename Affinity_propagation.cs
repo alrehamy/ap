@@ -292,4 +292,60 @@ public class Affinity_propagation
             }
             return median;
         }
+        /// <summary>
+        ///判断数据点属于哪个类 
+        /// </summary>
+        private void decideCluster()
+        {
+            int[] tmp1 = new int[num];
+            for (int k1 = 0; k1 < num; k1++)
+                tmp1[k1] = -1;
+            int rec = 0;
+            double max_rec = 0;
+            for (int k = 0; k < num; k++)
+            {
+
+                if (iscenter[k] == 1)
+                {
+                    tmp1[rec] = k;
+                    rec++;
+                }
+            }
+            //    textBox1.Text += k.ToString() + ",";
+
+            for (int i = 0; i < num; i++)
+            {
+                int loc = 0;
+                for (int j = 0; j < rec - 1; j++)
+                {
+                    int tmp2 = tmp1[j];
+                    int tmp3 = tmp1[j + 1];
+                    max_rec = similarmatrix[i, tmp2];
+                    loc = tmp2;
+                    if (max_rec < similarmatrix[i, tmp3])
+                    {
+                        max_rec = similarmatrix[i, tmp3];
+                        loc = tmp3;
+                    }
+
+
+
+
+                }
+
+                //string str1= "第" + i.ToString() 
+                //   + "点的聚类中心是位于第" + loc.ToString() + "点，其相似度数据为"+max_rec.ToString()+"\r\n";
+                ///显示数据点属于的聚类中心，并在textbox1中显示出来
+                string str1 = "第" + i.ToString()
+                    + "点的聚类中心是位于第" + loc.ToString() + "点，其数据为" + points[i].X.ToString() + "," + points[i].Y.ToString() + "\r\n";
+                textBox1.AppendText(str1);
+                //现实第i点的聚类中心是max_rec,max_rec是第loc点;
+                //MessageBox.Show("第%d", max_rec);
+
+            }
+
+
+
+
+        }
 }
